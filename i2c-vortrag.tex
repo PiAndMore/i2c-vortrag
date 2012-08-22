@@ -58,6 +58,11 @@
 
 \begin{document}
 
+\lstset{%
+   basicstyle=\ttfamily
+}
+
+
 % Titelfolie
 \begin{frame}[plain]
  \titlepage
@@ -211,7 +216,18 @@
 
 \subsection{Beispielaufbau}
 
-\begin{frame}{Beispielschaltung}
+\begin{frame}{Hinweis}
+ \begin{alertblock}{Achtung!}
+  Hinweise auf dem Beipackzettel beachten!\\
+  Erst denken und nochmal überprüfen, dann erst anschalten!
+ \end{alertblock}
+\end{frame}
+
+\begin{frame}{Beispielschaltung (1)}
+ \includegraphics[width=\textwidth]{testaufbau.png}
+\end{frame}
+
+\begin{frame}{Beispielschaltung (2)}
  \begin{itemize}
    \item \RPi
    \item Portexpander MCP23016
@@ -260,7 +276,7 @@ sudo adduser pi i2c
 
 \subsection{Inbetriebnahme}
 
-\begin{frame}[fragile]{Python (1)}
+\begin{frame}[fragile]{Python}
  Ein kleines Python-Programm:
  \lstset{language=Python}
  \begin{lstlisting}
@@ -273,15 +289,18 @@ bus.write_byte_data(0x20, 0x07, 0b11111110)
 bus.write_byte_data(0x20, 0x01, 0b00000001)
 # Port 1: erster Pin auf Low
 bus.write_byte_data(0x20, 0x01, 0b00000000)
+# Port 0: Pins abfragen
+x = bus.read_byte_data(0x20, 0x00)
  \end{lstlisting}
  Tipp: kann man direkt in Python eintippen (Befehl: \lstinline[language=bash]|python|)
 \end{frame}
 
-\begin{frame}[fragile]{Python (2)}
- \begin{lstlisting}
-# Port 0: Pins abfragen
-x = bus.read_byte_data(0x20, 0x00)
- \end{lstlisting}
+\begin{frame}[plain]
+        \begin{center}
+        \huge Fragen?
+    \end{center}
+        \tableofcontents
 \end{frame}
+
 
 \end{document}
